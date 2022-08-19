@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .close-btn{
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            
+        }
+    </style>
+</head>
+<body>
+    <!--<div id="time">2019-9-9</div>-->
+    <div class="box">
+       QRCODE
+       <img src = "254200.png" alt="">
+       <i class = "close-btn">x</i>
+    </div>
+    
+    <script>
+        
+        var btn = document.querySelector('i');
+        var div = document.querySelector('div');
+        btn.onclick = function(){
+            div.style.display = 'none';
+        } 
+    </script>
+
+</body>
+</html>
