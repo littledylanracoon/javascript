@@ -1,0 +1,17 @@
+找字串中重複最多的字母 https://www.bilibili.com/video/BV1Sy4y1C7ha?p=184
+var str = "gotsevenforever";
+var obj = {};
+var max = 0;
+var c = '';
+for (var j in str) {
+    if (str[j] in obj) {
+        obj[str[j]]++;
+        if(obj[str[j]] > max){ 
+            max = obj[str[j]];
+            c = str[j];
+        }
+    } else {
+        obj[str[j]] = 1;
+    }
+}
+console.log(max + c);
