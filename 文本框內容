@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <!--<div id="time">2019-9-9</div>-->
+    <input type="text" value="enter">
+    
+    <script>
+        var text = document.querySelector('input');
+        text.onfocus = function(){
+            if(text.value == 'enter'){
+                text.value = '';
+            }
+            this.style.color = '#333';
+        } 
+        text.onblur = function(){
+            if(text.value == ''){
+                text.value = 'enter';
+            } 
+            this.style.color = '#999';
+        }
+    </script>
+
+</body>
+</html>
