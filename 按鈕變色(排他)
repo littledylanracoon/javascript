@@ -1,0 +1,35 @@
+要注意this跟button[i]的使用時間  https://www.bilibili.com/video/BV1Sy4y1C7ha?p=216
+排他:先把大家都設成一樣 再改自己的
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <!--<div id="time">2019-9-9</div>-->
+    <button>按鈕1</button>
+    <button>按鈕2</button>
+    <button>按鈕3</button>
+    <button>按鈕4</button>
+    <button>按鈕5</button>
+    
+    <script>
+        var button = document.querySelectorAll('button');
+        for(var i = 0; i < button.length; i++){
+            button[i].onclick = function(){
+                for(var j = 0; j < button.length; j++){
+                    button[j].style.backgroundColor = '';
+                }
+                this.style.backgroundColor = 'pink';
+            }
+        }
+
+    </script>
+</html>
