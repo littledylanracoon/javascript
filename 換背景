@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            list-style: none; //去掉圖片的list(點)
+            float: left; //圖片橫式呈現
+            margin: 0 1px;
+            cursor: pointer; //游標的圖標改變
+        }
+        body{
+            background: url(messageImage_1660980048283.jpg) no-repeat center top;
+        }
+        img{
+            width:140px; //調整圖片大小
+        }
+    </style>
+</head>
+<body>
+    <!--<div id="time">2019-9-9</div>-->
+    <li><img src = messageImage_1660980048283.jpg></li>
+    <li><img src = 202011_whiteChristmas_type1_1920.jpg></li>
+    <li><img src = 202107_type1_1920.jpg></li>
+    
+    
+    <script>
+        var img = document.querySelectorAll('img');
+        for(var i = 0; i < img.length; i++){
+            img[i].onclick = function(){
+                console.log('hi');
+                document.body.style.backgroundImage = 'url(' + this.src + ')';
+            }
+        }
+
+    </script>
+</html>
