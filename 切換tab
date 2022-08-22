@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       .tab_list li{
+            float:left;
+            height: 39px;
+            line-height: 39px;
+            padding: 0 20px;
+            text-align: center;
+       }
+
+       .tab_list .current{
+        background-color: #c81623;
+        color: #fff;
+       }
+        
+       .item_info{
+        padding: 20px 0 0 20px;
+       }
+
+    </style>
+</head>
+<body>
+    <!--<div id="time">2019-9-9</div>-->
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current" id="introduce">introduce</li>
+                <li id="form">form</li>
+                <li id="insurance">insurance</li>
+                <li id="sold">sold</li>
+            </ul>
+        </div>
+        
+        <div class="tab_con" id="con">
+            <div class="item" id="model1">introduce model</div>
+            <div class="item" id="model2" style="display:none">form model</div>
+            <div class="item" id="model3" style="display:none">insurance model</div>
+            <div class="item" id="model4" style="display:none">sold model</div>
+        </div>
+    </div>    
+    <script>
+       var record = 0;
+       var temp = '';
+       var arr = ['introduce', 'form', 'insurance', 'sold'];
+       var arr1 = ['model1', 'model2', 'model3', 'model4']
+       var tab_list = document.querySelectorAll('li');
+       var con = document.getElementById('con').querySelectorAll('div');
+       //console.log(con);
+       for(var i = 0; i < tab_list.length; i++){
+            tab_list[i].onclick = function(){
+                this.className = 'current';
+                con[record].style.display = 'none';
+                con[arr.indexOf(this.id)].style.display = 'block';
+                document.querySelector('#'+arr[record]).className = '';
+                record = arr.indexOf(this.id);
+            }
+       } 
+    </script>
+
+
+</html>
