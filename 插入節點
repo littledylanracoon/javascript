@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    li{
+        background-color: yellowgreen;
+        color: pink;
+        font-size: 14px;
+        margin: 15px 0;
+    }
+    </style>
+</head>
+<body>
+    <!--<div id="time">2019-9-9</div>-->
+    <textarea name="" id="">123</textarea>
+    <button>發布</button>
+    <ul>
+        
+    </ul>
+    <script>
+      var btn = document.querySelector('button');
+      var text = document.querySelector('textarea');
+      var ul = document.querySelector('ul');
+      btn.onclick = function(){
+        var li = document.createElement('li');
+        li.innerHTML = text.value;
+        //ul.appendChild(li);
+        ul.insertBefore(li, ul.children[0]);
+        text.value = '';
+      }
+    </script>
+
+
+</html>
