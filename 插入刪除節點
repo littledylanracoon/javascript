@@ -36,3 +36,15 @@
 
 
 </html>
+
+刪除
+var ul = document.querySelector('ul');
+        var btn = document.querySelector('button');
+        btn.onclick = function(){
+            if(ul.children.length == 0){
+                this.disabled = true;
+            }
+            else{
+                ul.removeChild(ul.children[0]);
+            }
+        }
