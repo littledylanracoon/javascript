@@ -48,3 +48,8 @@ var ul = document.querySelector('ul');
                 ul.removeChild(ul.children[0]);
             }
         }
+
+複製
+var ul = document.querySelector('ul');
+var lili = ul.children[0].cloneNode(true); //true深拷貝
+ul.appendChild(lili);
