@@ -1,0 +1,20 @@
+1.
+var div = document.querySelectorAll('div');
+divs[0].onclick = function(){
+  alert(11);
+  divs[0].onclick = null; //傳統方式
+}
+
+2.
+divs[0].addEventListener('click', fn);
+function fn(){
+  alert(22);
+  divs[0].removeEventListener('click', fn); //刪除事件
+}
+
+3.
+divs[0].attachEvent('onclick', fn);
+function fn(){
+  alert(33);
+  divs[0].detachEvent('onclick', fn);
+}
