@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+     
+    </style>
+</head>
+<body>
+    <button class="on">press</button>
+    
+    <script>
+      
+      var button = document.querySelector('button');
+      button.addEventListener('click', function(){
+        button.disabled = true;
+        var i = 3;
+        button.innerHTML = '還剩下' + i + '秒';
+        var timer = setInterval(function(){
+          if(i == 0){  //if放前面才不會最後一秒被吃掉
+            clearInterval(timer);
+            button.disabled = false;
+            button.innerHTML = 'press';
+          }
+          //console.log(i);
+          else{
+            button.innerHTML = '還剩下' + i + '秒';
+            i--;
+          }
+          //console.log(i);
+        }, 1000);
+      })
+      
+    </script>
+  
+</body>
+</html>
