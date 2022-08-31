@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+      .img{
+         width: 300px;
+         height: 300px;
+         border: 1px solid #ccc;
+         margin: 100px;
+      }
+      img{
+         height: 100%;
+         width: 100%;
+         
+      }
+      .mask{
+         display: none;
+         position: absolute;
+         top: 100px;
+         left: 107px;
+         width: 150px;
+         height: 150px;
+         background-color: #FEDE4F;
+         opacity: .5;
+         cursor: move;
+      }
+      .big {
+         display: none;
+         position: absolute;
+         left: 430px;
+         top: 100px;
+         width: 400px;
+         height: 400px;
+         background-color: pink;
+         border: 1px solid #ccc;
+         overflow: hidden;
+      }
+      .big img{
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 600px;
+         height: 600px;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="img">
+      <img src = "pic.jpg" class="pic" alt="">
+      <div class="mask"></div>
+      <div class="big">
+         <img src = "pic.jpg" class="bigimg" alt="">
+      </div>
+   </div>
+   <script>
+      //滑鼠一閃一閃是因為鼠標到圖片上後會執行mouseover出現遮蓋層導致不在圖片上而發生mouseout
+      //解決辦法: 1.點擊事件用img的話 在mask的css加pointer-events: none; 2.點擊事件用box的話就沒有問題
+      var img = document.querySelector('.pic');
+      var box = document.querySelector('.img');
+      var mask = document.querySelector('.mask');
+      var big = document.querySelector('.big');
+      var bigimg = document.querySelector('.bigimg')
+      var x = 0;
+      var y = 0;
+      box.addEventListener('mouseover', function(){
+         mask.style.display = 'block';
+         big.style.display = 'block';
+      })
+      box.addEventListener('mousemove', on);
+      function on(e){
+         x = e.pageX - box.offsetLeft + 35 ;
+         y = e.pageY - box.offsetTop + 25 ;
+         //解決超出邊緣
+         x <= box.offsetLeft? x = box.offsetLeft : x = x;
+         x >= box.offsetLeft + 150? x = box.offsetLeft + 150 : x = x;
+         y <= box.offsetTop? y = box.offsetTop : y = y;
+         y >= box.offsetTop + 150? y = box.offsetTop + 150 : y = y;
+         mask.style.left = x + 'px';
+         mask.style.top = y + 'px';
+         //對應到大盒子
+         var bigMax = bigimg.offsetWidth - big.offsetWidth;
+         var bigX = x * bigMax / 150;
+         var bigY = y * bigMax / 150;
+         bigimg.style.left = -bigX + 185 + 'px';
+         bigimg.style.top = -bigY + 120 + 'px';
+         //console.log(mask.style.left, mask.style.top);
+      }
+      box.addEventListener('mouseout', function(){
+         mask.style.display = 'none';
+         big.style.display = 'none';
+      })
+   </script>
+   
+</body>
+
+</html>
