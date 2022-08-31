@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+      div {
+         width: 200px;
+         height: 200px;
+         background-color: pink;
+         border: 10px solid red;
+         padding: 10px;
+         overflow: auto;
+      }
+   </style>
+</head>
+
+<body>
+   <div>
+      我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容
+      我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容
+      我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容我是內容
+
+   </div>
+   <script>
+     //scroll 不包含border 包含padding 和client最大差別是scroll包含真正內容大小 動態得到元素的大小 滾動距離等
+     //scrolltop 上面被捲掉的頭部
+     var div = document.querySelector('div');
+     div.addEventListener('scroll', function(){
+         console.log(div.scrollTop); 
+     })
+     
+   </script>
+   
+</body>
+
+</html>
