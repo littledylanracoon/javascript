@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+
+      .slider-bar {
+         position: absolute;
+         left: 50%;
+         top: 300px;
+         margin-left: 600px;
+         width: 45px;
+         height: 130px;
+         background-color: black;
+      }
+
+      .w{
+         width: 1200px;
+         margin: 10px auto;
+      }
+      .header{
+         height: 150px;
+         background-color: skyblue;
+      }
+      .banner{
+         height: 350px;
+         background-color: pink;
+      }
+      .main{
+         height: 1000px;
+         background-color: yellowgreen;
+      }
+      span {
+         display: none;
+         position: absolute;
+         bottom: 0;
+         color: white;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="slider-bar">
+      <span class="goBack">返回頂部</span>
+   </div>
+   <div class="header w">頭部區域</div> 
+   <div class="banner w">banner區域</div> 
+   <div class="main w">主體部分</div> 
+   <script>
+      var sliderbar = document.querySelector('.slider-bar');
+      var banner = document.querySelector('.banner');
+      var main = document.querySelector('.main');
+      var go = document.querySelector('.goBack');
+      var bannerTop = banner.offsetTop; //被捲去頭部的大小 要寫在外面
+      var mainTop = main.offsetTop;
+      var sliderbarTop = sliderbar.offsetTop - bannerTop;  //側邊欄固定的位子
+      document.addEventListener('scroll', function(){
+         //console.log(banner.offsetTop);
+         //console.log(Math.round(pageYOffset));
+         if(window.pageYOffset >= bannerTop){ //捲去的頭部>bannertop就要把側邊欄改固定定位
+            sliderbar.style.position = 'fixed';
+            sliderbar.style.top = sliderbarTop + 'px';
+         }
+         else{
+            sliderbar.style.position = 'absolute';
+            sliderbar.style.top = '300px';
+         }
+         if(window.pageYOffset >= mainTop){
+            //console.log('hi');
+            go.style.display = 'block';
+         }
+         else{
+            go.style.display = 'none';
+         }
+
+      })
+   </script>
+   
+</body>
+
+</html>
