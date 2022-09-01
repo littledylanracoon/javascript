@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+      div {
+         position: absolute;
+         left: 0;
+         width: 100px;
+         height: 100px;
+         background-color: pink;
+      }
+      
+      span {
+         position: absolute;
+         left: 0;
+         top: 200px;
+         display: block;
+         width: 150px;
+         height: 150px;
+         background-color: palegreen;
+      }
+
+   </style>
+</head>
+
+<body>
+   <div></div>
+   <span></span>
+   <button class="one">點span</button>
+   <button class="two">再點span</button>
+   <button class="left">中間span</button>
+   <script>
+    //傳遞兩個參數:動畫對象、移動距離(位置)
+    //var obj = {}; obj.name = 'andy'; 不同元素不同定時器
+    var div = document.querySelector('div');
+    var span = document.querySelector('span');
+    var pressSpan = document.querySelector('.one');
+    var goSpan = document.querySelector('.two');
+    var left = document.querySelector('.left');
+    var move = 0;
+    function animate(obj, target, callback){
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){  
+         (target - obj.offsetLeft) / 10 > 0? move = Math.ceil((target - obj.offsetLeft) / 10) : move = Math.floor((target - obj.offsetLeft) / 10); //要寫在定時器裡面
+         if(obj.offsetLeft == target){
+            clearInterval(obj.timer);
+            if(callback) 
+               callback();
+         }
+         else //如果停止定時器就不會再算 所以不加else也可以
+            obj.style.left = obj.offsetLeft + move + 'px';
+      }, 100);
+   }
+   animate(div, 300);
+   pressSpan.addEventListener('click', function(){
+      animate(span, 400, function(){
+         span.style.backgroundColor = 'skyblue';
+      });
+   });
+
+   goSpan.addEventListener('click', function(){
+      animate(span, 700);
+   });
+   
+   left.addEventListener('click', function(){
+      animate(span, 300);
+   });
+   </script>
+   
+</body>
+
+</html>
