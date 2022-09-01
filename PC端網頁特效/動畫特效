@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+      div {
+         position: absolute;
+         left: 0;
+         width: 100px;
+         height: 100px;
+         background-color: pink;
+      }
+   
+   </style>
+</head>
+
+<body>
+   <div></div>
+   <script>
+   //獲得盒子位置、在當前距離加上要走的距離(需要用absolute)、到某個定位就關閉計時器(停止)
+    var div = document.querySelector('div');
+    var timer = setInterval(function(){
+      if(div.offsetLeft >= 400)
+         clearInterval(timer);
+      else
+         div.style.left = div.offsetLeft + 1 + 'px';
+    }, 100)
+    
+   </script>
+   
+</body>
+
+</html>
