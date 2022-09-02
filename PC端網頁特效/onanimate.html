@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+
+        span {
+            position: absolute;
+            left: 0;
+            top: 100;
+            width: 40px;
+            height: 40px;
+            background-color: pink;
+            
+        }
+        .con {
+            position: absolute;
+            left: 0;
+            top: 100;
+            width: 200px;
+            height: 40px;
+            background-color: palegreen;
+            z-index: -1;
+        }
+   </style>
+   <script src="animate.js"></script>
+</head>
+
+<body>
+   <div class="sliderbar">
+    <span>left</span>
+    <div class="con">反饋</div>
+   </div>
+
+   <script>
+    var sliderbar = document.querySelector('.sliderbar');
+    var con = document.querySelector('.con');
+    var span = document.querySelector('span');
+    sliderbar.addEventListener('mouseenter', function(){
+        animate(con, 0, function(){
+            span.innerHTML = 'right';  //也可寫sliderbar.children[0].innerHTML
+            
+        });
+    })
+    sliderbar.addEventListener('mouseleave', function(){
+        animate(con, -160, function(){
+            span.innerHTML = 'left';
+        });
+    })
+   </script>
+   
+</body>
+
+</html>
