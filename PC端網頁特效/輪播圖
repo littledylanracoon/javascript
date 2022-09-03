@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+      
+      .main{
+         width: 980px;
+         height: 455px;
+         margin-left: 219px;
+         margin-top: 10px;
+      }
+
+      .focus{
+         position: relative;
+         width: 400px;
+         height: 455px;
+         background-color: purple;
+         overflow: hidden;
+      }
+
+      .focus ul{
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 500%;
+      }
+
+      .focus ul li{
+         float: left;
+      }
+
+      .arrow-l, 
+      .arrow-r{
+         display: none;
+         position: absolute;
+         top:50%;
+         margin-top: -20px;
+         width: 24px;
+         height: 40px;
+         background: black;
+         text-align: center;
+         line-height: 40px;
+         color: #fff;
+         font-family: 'icomoon';
+         font-size: 18px;
+         z-index: 1;
+      }
+
+      .arrow-r{
+         right: 0;
+      }
+
+      .circle{
+         position: absolute;
+         bottom: 10px;
+         left: 50px;
+      }
+
+      .circle li{
+         float: left;
+         width: 8px;
+         height: 8px;
+         border: 2px solid blue;
+         margin: 0 3px;
+         border-radius: 50%;
+         cursor: pointer;
+         list-style:none;
+         
+      }
+
+      .current{
+         background-color: #fff;
+      }
+
+      img{
+         width: 400px;
+         
+      }
+   </style>
+   <script src="animate.js"></script>
+</head>
+
+<body>
+   <div class="main">
+      <div class="focus f1">
+         <a href="javascript:;" class="arrow-l">
+            &lt;
+         </a>
+         <a href="javascript:;" class="arrow-r">
+            &gt;
+         </a>
+
+         <ul>
+            <li>
+               <a href="#"><img src="202011_whiteChristmas_type1_1920.jpg" alt=""></a>
+            </li>
+            <li>
+               <a href="#"><img src="202107_type1_1920.jpg" alt=""></a>
+            </li>
+            <li>
+               <a href="#"><img src="messageImage_1660980048283.jpg" alt=""></a>
+            </li>
+         </ul>
+
+         <ol class="circle">
+         <!--   <li></li>
+            <li class="current"></li>
+            <li></li> -->
+         </ol> 
+      </div>
+   </div>
+   <script>
+      var focus = document.querySelector('.focus');
+      var ul = document.querySelector('ul');  //如果還有其他ul就要限定focus.queryselector
+      var ol = document.querySelector('.circle');
+      var arrow_l = document.querySelector('.arrow-l');
+      var arrow_r = document.querySelector('.arrow-r');
+      var focusWidth = focus.offsetWidth;
+      var temp = 0;
+      var circle = 0;
+      focus.addEventListener('mouseenter', function(){ //左右按鈕顯示&清除定時器
+         arrow_l.style.display = 'block';
+         arrow_r.style.display = 'block';
+         clearInterval(timer);
+         timer = null; //清除定時器
+      })
+      focus.addEventListener('mouseleave', function(){
+         arrow_l.style.display = 'none';
+         arrow_r.style.display = 'none';
+         timer = setInterval(function(){
+            arrow_r.click(); //手動調用點擊事件
+         }, 5000);
+         
+      })
+      //console.log(ul.children.length);
+      arrow_l.addEventListener('click', function(){ 
+         //console.log(temp);
+         if(temp == 0){ //到最底所以切換到最右邊那張
+            ul.style.left = -(ul.children.length - 1) * focusWidth + 'px';
+            temp = ul.children.length - 1;
+         }
+         temp--; //temp是照片的index
+         ol.children[circle].className = "";
+         --circle == -1? circle = ul.children.length - 2 : circle = circle; //到最底所以切換到最右邊那個圓圈
+         //console.log(circle);
+         ol.children[circle].className = "current"; //circle紀錄圓圈位置
+         animate(ul, -temp * focusWidth);
+      })
+      arrow_r.addEventListener('click', function(){
+         if(temp == ul.children.length - 1){
+            ul.style.left = 0;
+            temp = 0;
+         }
+         temp++;
+         ol.children[circle].className = "";
+         ++circle == ul.children.length - 1? circle = 0 : circle = circle;
+         ol.children[circle].className = "current";
+         console.log(circle);
+         animate(ul, -temp * focusWidth);
+      })
+      for(var i = 0; i < ul.children.length; i++){
+         var li = document.createElement('li');
+         li.setAttribute('index', i);
+         ol.appendChild(li);
+         li.addEventListener('click', function(){
+           var current = ol.querySelector('.current');
+           current.className = "";
+           //ol.children[temp].className = "";
+           this.className = "current"; 
+           //要移動要先確定有定位
+           var index = this.getAttribute('index');
+           temp = index;
+           circle = index; //和上面的事件index同步
+           animate(ul, -index * focusWidth);  //小圓的索引號*圖片寬度為ul移動距離
+         })
+      }
+      ol.children[0].className = "current";
+      var first = ul.children[0].cloneNode(true); //深克隆 把第一張圖片(li)放到ul最後面造成視覺效果
+      ul.appendChild(first);
+
+      var timer = setInterval(function(){
+         arrow_r.click(); //手動調用點擊事件 每5秒移動一張
+      }, 5000);
+      
+   </script>
+   
+</body>
+
+</html>
