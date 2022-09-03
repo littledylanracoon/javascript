@@ -123,6 +123,7 @@
       var focusWidth = focus.offsetWidth;
       var temp = 0;
       var circle = 0;
+      var flag = true;
       focus.addEventListener('mouseenter', function(){ //左右按鈕顯示&清除定時器
          arrow_l.style.display = 'block';
          arrow_r.style.display = 'block';
@@ -140,28 +141,37 @@
       //console.log(ul.children.length);
       arrow_l.addEventListener('click', function(){ 
          //console.log(temp);
-         if(temp == 0){ //到最底所以切換到最右邊那張
-            ul.style.left = -(ul.children.length - 1) * focusWidth + 'px';
-            temp = ul.children.length - 1;
+         if(flag == true){
+            if(temp == 0){ //到最底所以切換到最右邊那張
+               ul.style.left = -(ul.children.length - 1) * focusWidth + 'px';
+               temp = ul.children.length - 1;
+            }
+            temp--; //temp是照片的index
+            ol.children[circle].className = "";
+            --circle == -1? circle = ul.children.length - 2 : circle = circle; //到最底所以切換到最右邊那個圓圈
+            //console.log(circle);
+            ol.children[circle].className = "current"; //circle紀錄圓圈位置
          }
-         temp--; //temp是照片的index
-         ol.children[circle].className = "";
-         --circle == -1? circle = ul.children.length - 2 : circle = circle; //到最底所以切換到最右邊那個圓圈
-         //console.log(circle);
-         ol.children[circle].className = "current"; //circle紀錄圓圈位置
-         animate(ul, -temp * focusWidth);
+         flag = false;
+         animate(ul, -temp * focusWidth, function(){
+            flag = true;
+         });
       })
       arrow_r.addEventListener('click', function(){
-         if(temp == ul.children.length - 1){
-            ul.style.left = 0;
-            temp = 0;
+         if(flag == true){
+            if(temp == ul.children.length - 1){
+               ul.style.left = 0;
+               temp = 0;
+            }
+            temp++;
+            ol.children[circle].className = "";
+            ++circle == ul.children.length - 1? circle = 0 : circle = circle;
+            ol.children[circle].className = "current";
          }
-         temp++;
-         ol.children[circle].className = "";
-         ++circle == ul.children.length - 1? circle = 0 : circle = circle;
-         ol.children[circle].className = "current";
-         console.log(circle);
-         animate(ul, -temp * focusWidth);
+         flag = false;
+         animate(ul, -temp * focusWidth, function(){
+            flag = true; //打開節流閥
+         });
       })
       for(var i = 0; i < ul.children.length; i++){
          var li = document.createElement('li');
