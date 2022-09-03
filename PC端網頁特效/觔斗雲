@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <style>
+      
+      ul{
+         position: relative;
+         top: 100px;
+         left: 100px;
+      }
+
+      ul li{
+         list-style: none;
+         float: left;
+         margin: 0 50px;
+         cursor: pointer;
+      }
+
+      .cloud{
+         position: absolute;
+         top: 70px;
+         left: 150px;
+         width: 100px;
+         height: 100px;
+         max-width: 100%​;
+         max-height: 100%;
+         background: url(tt.jpg) no-repeat;
+         z-index: -1;
+      }
+   </style>
+   <script src="animate.js"></script>
+</head>
+
+<body>
+   <div id="c_nav" class="c_nav">
+      <span class="cloud"></span>
+      <ul>
+         <li class="current"><a href="#">首頁</a></li>
+         <li><a href="#">招募</a></li>
+         <li><a href="#">資訊</a></li>
+         <li><a href="#">聯絡</a></li>
+      </ul>
+   </div>
+   <script>
+      var c_nav = document.querySelector('.c_nav');
+      var cloud = document.querySelector('.cloud');
+      var lis = document.querySelectorAll('li');
+      var current = 150;
+      for(var i = 0; i < lis.length; i++){
+         lis[i].addEventListener('mouseenter', function(){
+            animate(cloud, this.offsetLeft);
+         })
+         lis[i].addEventListener('mouseleave', function(){
+            animate(cloud, current);
+         })
+         lis[i].addEventListener('click', function(){
+            current = this.offsetLeft;
+         })
+      }
+   </script>
+   
+</body>
+
+</html>
