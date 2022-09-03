@@ -5,7 +5,8 @@ function animate(obj, target, callback){
        if(obj.offsetLeft == target){
           clearInterval(obj.timer);
           if(callback) 
-             callback();
+             callback(); 
+           //上面兩行相等於 callback && callback();  如果前面為真就會調用 為否就直接返回
        }
        else //如果停止定時器就不會再算 所以不加else也可以
           obj.style.left = obj.offsetLeft + move + 'px';
