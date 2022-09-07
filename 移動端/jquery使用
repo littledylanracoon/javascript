@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <video src="dd.mp4" muted></video>
+    <script>
+        //(a) DOM -> jQuery 1.直接獲取jQuery $('video'); 2.原生js獲取過來DOM對象
+        //$('video');
+        var video = document.querySelector('video');
+        //$(video).play(); jQuery沒有play這個方法
+        //(b) jQuery -> DOM  1. $('video')[0].play(); 2.$('video').get(0).play();
+        //video.play();
+        $('video')[0].play();
+    </script>
+  
+</body>
+</html>
