@@ -47,6 +47,10 @@
             $('ol li:odd').css('color', 'green'); //索引號為奇數
             $('.nod').children('p').css('color', 'brown');
             $('.nod').find('p').css('color', 'white'); //兒子+孫子
+            $('ol .item').siblings('li').css('color', 'red'); //兄弟(除了自己以外)
+            $('ul li:eq(2)').css('color', 'green'); //選擇器
+            $('ul li').eq(0).css('color', 'blue'); //選擇方法 推薦這種
+            console.log($('div:first').hasClass('father')); //判斷是否有這種類名
         })
     </script>
   
