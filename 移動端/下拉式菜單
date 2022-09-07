@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .nav{
+            position: relative;
+            list-style: none;
+            display: inline-block;
+        }
+        .nav ul{
+            display: none;
+            position: absolute;
+           
+        }
+        .nav li{
+            list-style: none;
+            float: left;
+            margin: 20px;
+        }
+        .nav ul li{
+            float: none;
+            border-bottom: 1px solid #FECC5B;
+            
+        }
+        .nav ul li a:hover{
+            background-color: #FFF5DA;
+        }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <ul class="nav">
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="">私信</a>
+                </li>
+                <li>
+                    <a href="">評論</a>
+                </li>
+                <li>
+                    <a href="">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="">私信</a>
+                </li>
+                <li>
+                    <a href="">評論</a>
+                </li>
+                <li>
+                    <a href="">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="">私信</a>
+                </li>
+                <li>
+                    <a href="">評論</a>
+                </li>
+                <li>
+                    <a href="">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="">私信</a>
+                </li>
+                <li>
+                    <a href="">評論</a>
+                </li>
+                <li>
+                    <a href="">@我</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        $(function(){
+           $('.nav>li').mouseover(function(){ //親兒子
+                //$(this)是jQuery當前元素 但不用加''
+                $(this).children('ul').show(); 
+           })
+           $('.nav>li').mouseout(function(){ //親兒子
+                //$(this)是jQuery當前元素 但不用加''
+                $(this).children('ul').hide(); 
+           })
+        })
+    </script>
+  
+</body>
+</html>
