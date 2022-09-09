@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+
+    <script>
+        $(function(){
+            $('button').click(function(){
+                /*原本
+                $(this).css('color', 'pink');
+                $(this).siblings('button').css('color', ''); */
+                //鏈式編程:節省代碼量看起來更優雅
+                $(this).css('color', 'pink').siblings().css('color', '');
+            })
+        })
+    </script>
+  
+</body>
+</html>
