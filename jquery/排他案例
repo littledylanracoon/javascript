@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            list-style: none;
+        }
+        .wrapper{
+            position: relative;
+        }
+        #left{
+            position: relative;
+            left: 20px;
+            top: 20px;
+            margin: 10px;
+        }
+        #left li{
+            width: 50px;
+            padding: 10px;
+            list-style: none;
+            text-decoration: none;
+            border: 10px black;
+            background-color: pink;
+            border-left: 1px solid skyblue;
+            border-right: 1px solid skyblue;
+        }
+        #content a{
+            position: absolute;
+            left: 200px;
+            top: 20px;
+        }
+        #content{
+            border-left: 1px solid pink;
+            border-right: 1px solid pink;
+        }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <ul id="left">
+            <li><a href="#">女靴</a></li>
+            <li><a href="#">雪靴</a></li>
+            <li><a href="#">冬裙</a></li>
+            <li><a href="#">大衣</a></li>
+        </ul>
+        <div id="content">
+            <div>
+                <a href="#"><img src="202011_whiteChristmas_type1_1920.jpg" width="200" height="250" /></a>
+            </div>
+            <div>
+                <a href="#"><img src="202107_type1_1920.jpg" width="200" height="250" /></a>
+            </div>
+            <div>
+                <a href="#"><img src="tt.jpg" width="200" height="250" /></a>
+            </div>
+            <div>
+                <a href="#"><img src="messageImage_1660980048283.jpg" width="200" height="250" /></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+           $('#left li').mouseenter(function(){
+            var index = $(this).index();
+            console.log(index);
+            $('#content div').eq(index).show();
+            $('#content div').eq(index).siblings().hide();
+
+           })
+        })
+    </script>
+  
+</body>
+</html>
