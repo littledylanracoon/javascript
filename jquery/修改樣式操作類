@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+            transition: all 0.5s;
+        }
+        .current{
+            background-color: red;
+            transform: rotate(360deg);
+        }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <div></div>
+
+    <script>
+        $(function(){
+            $('div').css({
+                //backgroundColor : 'blue', 
+                height: 400});
+            $('div').click(function(){
+                //console.log('hi');
+                //$(this).addClass('current');
+                $(this).toggleClass('current');
+            })
+        })
+    </script>
+  
+</body>
+</html>
