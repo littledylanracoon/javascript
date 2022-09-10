@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        li{
+            list-style: none;
+        }
+        .wrap{
+            position: relative;
+        }
+        .wrap img{
+            position: relative;
+            left: 20px;
+            top: 20px;
+            float: left;
+            display: block;
+            margin: 20px;
+        }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <ul>
+            <li>
+                <a href="#"><img src="202011_whiteChristmas_type1_1920.jpg" width="200" height="250" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="202107_type1_1920.jpg" width="200" height="250" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="tt.jpg" width="200" height="250" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="messageImage_1660980048283.jpg" width="200" height="250" /></a>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        $(function(){
+            $(".wrap li").hover(function(){
+                $(this).siblings().stop().fadeTo(400, 0.5);
+            }, function(){
+                $(this).siblings().stop().fadeTo(400, 1); //時間 透明度
+            })
+        })
+    </script>
+  
+</body>
+</html>
