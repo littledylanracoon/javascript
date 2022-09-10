@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       .tab{
+            position: relative;
+       }
+       .tab_list li{
+            float:left;
+            height: 39px;
+            line-height: 39px;
+            list-style: none;
+            padding: 0 20px;
+            text-align: center;
+       }
+
+       .tab_list .current{
+        background-color: #c81623;
+        color: #fff;
+       }
+       .tab_con{
+        position: absolute;
+        left: 60px;
+        top: 60px;
+       }
+       .item_info{
+        padding: 20px 0 0 20px;
+       }
+
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <!--<div id="time">2019-9-9</div>-->
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current" id="introduce">introduce</li>
+                <li id="form">form</li>
+                <li id="insurance">insurance</li>
+                <li id="sold">sold</li>
+            </ul>
+        </div>
+        
+        <div class="tab_con" id="con">
+            <div class="item" id="model1">introduce model</div>
+            <div class="item" id="model2" style="display:none">form model</div>
+            <div class="item" id="model3" style="display:none">insurance model</div>
+            <div class="item" id="model4" style="display:none">sold model</div>
+        </div>
+    </div>    
+    <script>
+       $('.tab_list li').click(function(){
+            $(this).addClass('current');
+            $(this).siblings('li').removeClass('current');
+            var index = $(this).index();
+            $('.tab_con .item').eq(index).show().siblings().hide();
+       })
+    </script>
+
+
+</html>
