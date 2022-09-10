@@ -93,6 +93,7 @@
     </ul>
     <script>
         $(function(){
+            /*
            $('.nav>li').mouseover(function(){ //親兒子
                 //$(this)是jQuery當前元素 但不用加''
                 $(this).children('ul').show(); 
@@ -101,6 +102,21 @@
                 //$(this)是jQuery當前元素 但不用加''
                 $(this).children('ul').hide(); 
            })
+           */
+          //鼠標經過, 鼠標離開
+          /*
+           $('.nav>li').hover(function(){
+                $(this).children('ul').slideDown(200); 
+           }, function(){
+                $(this).children('ul').slideUp(200); 
+           })
+           */
+           //只寫一個函數則經過離開都會觸發函數
+           
+           $('.nav>li').hover(function(){
+                $(this).children('ul').stop().slideToggle(200);  //停止上一個執行下一個
+           })
+           //STOP 停止動畫效果 寫到動畫效果的前面相當於結束上一次的動畫
         })
     </script>
   
