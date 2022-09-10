@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      div{
+        width: 150px;
+        height: 300px;
+        background-color: pink;
+      }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+      <button>顯示</button>
+      <button>隱藏</button>
+      <button>切換</button>
+      <button>下拉</button>
+      <button>上拉</button>
+      <button>滑動</button>
+      <div></div>
+    <script>
+       $('button').eq(1).click(function(){
+            $('div').hide('1000', function(){
+                console.log('hide');
+            });
+       })
+       $('button').eq(0).click(function(){
+            $('div').show('1000', function(){
+                console.log('show');
+            });
+       })
+       $('button').eq(2).click(function(){
+            $('div').toggle('1000', function(){
+                console.log('toggle');
+            });
+       })
+       $('button').eq(3).click(function(){
+            $('div').slideDown();
+       })
+       $('button').eq(4).click(function(){
+            $('div').slideUp(500);
+       })
+       $('button').eq(5).click(function(){
+            $('div').slideToggle(500);
+       })
+       
+    </script>
+
+
+</html>
