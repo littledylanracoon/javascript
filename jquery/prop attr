@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <a href="https://github.com/littledylanracoon/javascript/tree/main/jquery" title="good">good</a>
+    <input type="checkbox" name="" id="" checked>
+    <div index="1">我是div</div>
+    <span>123</span>
+    <script>
+        $(function(){
+           //console.log($("a").prop("href"));
+           $("a").prop("title", "better");
+           $("input").change(function(){
+            //console.log($(this).prop("checked"));
+           })
+           $("div").attr("index", 4);
+           $("span").data("uname", "andy");
+           console.log($("span").data("uname"));
+        })
+    </script>
+  
+</body>
+</html>
