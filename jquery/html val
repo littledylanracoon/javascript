@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <div>
+        <span>我是內容</span>
+    </div>
+    <input type="text" value="enter">
+    <script>
+        $(function(){
+          console.log($("div").html());
+          $("div").html("123");
+          $("input").val("1234")
+        })
+    </script>
+  
+</body>
+</html>
