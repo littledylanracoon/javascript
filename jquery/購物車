@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      .quantity-form{
+       
+      }
+      .p-price{
+        position: absolute;
+        left: 40px;
+        top: 105px;
+      }
+      .p-sum{
+        position: absolute;
+        left: 200px;
+        top: 105px;
+      }
+      .p-num{
+        position: absolute;
+        left: 100px;
+        top: 100px;
+      }
+      .itxt{
+        width: 50px;
+        text-align: center;
+      }
+      a{
+        background-color: pink;
+      }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <div class="p-price">$12.60</div>
+    <div class="p-num">
+        <div class="quantity-form">
+            <a href="javascript:;" class="decrement">-</a>
+            <input type="text" class="itxt" value="1">
+            <a href="javascript:;" class="increment">+</a>
+        </div>
+    </div>
+    <div class="p-sum">$12.60</div>
+    <script>
+        $(function(){
+          $(".itxt").change(function(){
+            var price = $(this).parent().parent().siblings(".p-price").text().substr(1);
+            $(this).val($(this).val() <= 1? 1 : $(this).val());
+            $(this).parent().parent().siblings(".p-sum").text('$' + (price * $(this).val()).toFixed(2));
+          })
+          $(".increment").click(function(){
+            var value = $(this).siblings(".itxt").val();
+            value++;
+            $(this).siblings(".itxt").val(value);
+            var price = $(this).parent().parent().siblings(".p-price").text().substr(1);
+            //var price = $(this).parents(".p-num").siblings(".p-price").text().substr(1);
+            //console.log(typeof(price.text()));
+            $(this).parent().parent().siblings(".p-sum").text('$' + (price * value).toFixed(2));
+          })
+          $(".decrement").click(function(){
+            var value = $(this).siblings(".itxt").val();
+            value--;
+            value = value <= 1? 1 : value;
+            $(this).siblings(".itxt").val(value);
+            var price = $(this).parent().parent().siblings(".p-price").text().substr(1);
+            //console.log(typeof(price.text()));
+            $(this).parent().parent().siblings(".p-sum").text('$' + (price * value).toFixed(2));
+          })
+        })
+    </script>
+  
+</body>
+</html>
