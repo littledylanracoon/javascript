@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <ul>
+        <li>原先的li</li>
+    </ul>
+    <div class="test">原先的div</div>
+    <script>
+        $(function(){
+            var li = $("<li>後來的li</li>");
+            $("ul").append(li);
+            var div = $("<div>後來的div</div>")
+            $(".test").after(div);
+            
+        })
+    </script>
+  
+</body>
+</html>
