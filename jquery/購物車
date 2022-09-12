@@ -10,17 +10,17 @@
        
       }
       .p-price{
-        position: absolute;
+        position: relative;
         left: 40px;
-        top: 105px;
+        top: 120px;
       }
       .p-sum{
-        position: absolute;
+        position: relative;
         left: 200px;
-        top: 105px;
+        top: 80px;
       }
       .p-num{
-        position: absolute;
+        position: relative;
         left: 100px;
         top: 100px;
       }
@@ -31,25 +31,46 @@
       a{
         background-color: pink;
       }
+      .tot{
+        position: absolute;
+        left: 400px;
+        top: 150px;
+      }
     </style>
     <script src="jquerymini.js"></script>
 </head>
 <body>
-    <div class="p-price">$12.60</div>
-    <div class="p-num">
-        <div class="quantity-form">
-            <a href="javascript:;" class="decrement">-</a>
-            <input type="text" class="itxt" value="1">
-            <a href="javascript:;" class="increment">+</a>
-        </div>
+    <div class="cart-item">
+        <div class="p-price">$12.30</div>
+        <div class="p-num">
+            <div class="quantity-form">
+                <a href="javascript:;" class="decrement">-</a>
+                <input type="text" class="itxt" value="1">
+                <a href="javascript:;" class="increment">+</a>
+            </div>
+        </div>   
+        <div class="p-sum">$12.30</div>
     </div>
-    <div class="p-sum">$12.60</div>
+    <div class="cart-item">
+        <div class="p-price">$14.40</div>
+        <div class="p-num">
+            <div class="quantity-form">
+                <a href="javascript:;" class="decrement">-</a>
+                <input type="text" class="itxt" value="1">
+                <a href="javascript:;" class="increment">+</a>
+            </div>
+        </div>   
+        <div class="p-sum">$14.40</div>
+    </div>
+   
+        <div class="tot">共選1件商品 總價$12.30</div>
     <script>
         $(function(){
           $(".itxt").change(function(){
             var price = $(this).parent().parent().siblings(".p-price").text().substr(1);
             $(this).val($(this).val() <= 1? 1 : $(this).val());
             $(this).parent().parent().siblings(".p-sum").text('$' + (price * $(this).val()).toFixed(2));
+            total();
           })
           $(".increment").click(function(){
             var value = $(this).siblings(".itxt").val();
@@ -59,6 +80,7 @@
             //var price = $(this).parents(".p-num").siblings(".p-price").text().substr(1);
             //console.log(typeof(price.text()));
             $(this).parent().parent().siblings(".p-sum").text('$' + (price * value).toFixed(2));
+            total();
           })
           $(".decrement").click(function(){
             var value = $(this).siblings(".itxt").val();
@@ -68,7 +90,20 @@
             var price = $(this).parent().parent().siblings(".p-price").text().substr(1);
             //console.log(typeof(price.text()));
             $(this).parent().parent().siblings(".p-sum").text('$' + (price * value).toFixed(2));
+            total();
           })
+          function total(){
+            var tot_num = 0;
+            var tot_price = 0;
+            $("input").each(function(i, domEle){
+                tot_num += parseInt($(domEle).val());
+            })
+            $(".p-sum").each(function(i, domEle){
+                //console.log(($(domEle).text().substr(1)));
+                tot_price += parseFloat($(domEle).text().substr(1));
+            })
+            $('.tot').text("共選" + tot_num + "件商品 總價$" + tot_price.toFixed(2));
+          }
         })
     </script>
   
