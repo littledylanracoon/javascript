@@ -36,11 +36,44 @@
         left: 400px;
         top: 150px;
       }
+      .p-action{
+        position: relative;
+        left: 260px;
+        top: 60px;
+      }
+      .operation{
+        position: relative;
+        left: 110px;
+        top: 130px;
+      }
+      .select-all{
+        position: relative;
+        left: 40px;
+        top: 150px;
+      }
+      .p-checkbox{
+        position: relative;
+        left: 10px;
+        top: 140px;
+      }
+      .check-cart-item{
+        background: #fff4e8;
+      }
     </style>
     <script src="jquerymini.js"></script>
 </head>
 <body>
+    <div class="cart-wrap">
+        <div class="cart-thead">
+            <div class="t-checkbox">
+                <input type="checkbox" name="" id="" class="checkall">全選
+            </div>
+        </div>
+    </div>
     <div class="cart-item">
+        <div class="p-checkbox">
+            <input type="checkbox" name="" id="" class="j-checkbox">
+        </div>
         <div class="p-price">$12.30</div>
         <div class="p-num">
             <div class="quantity-form">
@@ -50,8 +83,12 @@
             </div>
         </div>   
         <div class="p-sum">$12.30</div>
+        <div class="p-action"><a href="javascript:;">刪除</a></div>
     </div>
     <div class="cart-item">
+        <div class="p-checkbox">
+            <input type="checkbox" name="" id="" class="j-checkbox">
+        </div>
         <div class="p-price">$14.40</div>
         <div class="p-num">
             <div class="quantity-form">
@@ -61,11 +98,43 @@
             </div>
         </div>   
         <div class="p-sum">$14.40</div>
+        <div class="p-action"><a href="javascript:;">刪除</a></div>
     </div>
-   
-        <div class="tot">共選1件商品 總價$12.30</div>
+    <div class="cart-floatbar">
+        <div class="select-all">
+            <input type="checkbox" name="" id="" class="checkall">全選
+        </div>
+        <div class="operation">
+            <a href="javascript:;" class="remove-batch">刪除選中的商品</a>
+            <a href="javascript:;" class="clear-all">清理購物車</a>
+        </div>
+        <div class="tot">共選0件商品 總價$0.0</div>
+    </div>
     <script>
         $(function(){
+          $(".checkall").change(function(){
+            $(".j-checkbox, .checkall").prop("checked", $(this).prop("checked")); //全選&選擇框
+            if($(this).prop("checked")){ //添加背景顏色
+                $(".cart-item").addClass("check-cart-item");
+            }
+            else{
+                $(".cart-item").removeClass("check-cart-item");
+            }
+            total();
+          })
+          $(".j-checkbox").change(function(){
+            if($(this).prop("checked")){
+                $(this).parents((".cart-item")).addClass("check-cart-item");
+            }
+            else{
+                $(this).parents((".cart-item")).removeClass("check-cart-item");
+            }
+            if($(".j-checkbox:checked").length == $(".j-checkbox").length)
+                $(".checkall").prop("checked", true);
+            else
+                $(".checkall").prop("checked", false);
+            total();
+          })
           $(".itxt").change(function(){
             var price = $(this).parent().parent().siblings(".p-price").text().substr(1);
             $(this).val($(this).val() <= 1? 1 : $(this).val());
@@ -92,15 +161,30 @@
             $(this).parent().parent().siblings(".p-sum").text('$' + (price * value).toFixed(2));
             total();
           })
+          $(".p-action a").click(function(){
+            $(this).parents(".cart-item").remove();
+            total();
+          })
+          $(".remove-batch").click(function(){
+            $(".j-checkbox:checked").parents(".cart-item").remove();
+            total();
+          })
+          $(".clear-all").click(function(){
+            $(".cart-item").remove();
+            total();
+          })
           function total(){
             var tot_num = 0;
             var tot_price = 0;
-            $("input").each(function(i, domEle){
-                tot_num += parseInt($(domEle).val());
+            $(".itxt").each(function(i, domEle){
+                //console.log($(this).parents(".p-num").siblings(".p-checkbox").children(".j-checkbox").prop("checked"));
+                if($(this).parents(".p-num").siblings(".p-checkbox").children(".j-checkbox").prop("checked"))
+                    tot_num += parseInt($(domEle).val());
             })
             $(".p-sum").each(function(i, domEle){
                 //console.log(($(domEle).text().substr(1)));
-                tot_price += parseFloat($(domEle).text().substr(1));
+                if($(this).siblings(".p-checkbox").children(".j-checkbox").prop("checked"))
+                    tot_price += parseFloat($(domEle).text().substr(1));
             })
             $('.tot').text("共選" + tot_num + "件商品 總價$" + tot_price.toFixed(2));
           }
