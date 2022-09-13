@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      .fixedtool{
+        position: fixed;
+        top: 100px;
+        left: 50%;
+        margin-left: -676px;
+        width: 66px;
+        background-color: #fff;
+        
+
+      }
+      .fixedtool li{
+        width: 100px;
+        line-height: 32px;
+        text-align: center;
+        font-size: 12px;
+        list-style: none;
+        border: 1px solid black;
+
+      }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <div class="floor">
+        <div class="jiadian w">
+        </div>
+        <div class="shouji w">
+        </div>
+        <div class="diannao w">
+        </div>
+    </div>
+    <div class="fixedtool">
+        <ul>
+            <li class="current">家用電器</li>
+            <li>手機通訊</li>
+            <li>電腦辦公</li>
+        </ul>
+    </div>
+    <div class="recommend w"></div>
+    <script>
+      $(function(){
+        var toolTop = $(".recommend").offset().top;
+        $(window).scroll(function(){
+            if($(document).scrollTop()>= toolTop){
+                $(".fixedtool").fadeIn();
+            }
+            else{
+                $(".fixedtool").fadeOut();
+            }
+        })
+      })
+
+    </script>
+  
+</body>
+</html>
