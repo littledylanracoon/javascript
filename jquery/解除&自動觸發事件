@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      div{
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <div></div>
+    <ul>
+        <li>good</li>
+        <li>good</li>
+        <li>good</li>
+    </ul>
+    <p>pp</p>
+    <script>
+      $(function(){
+        $("div").on({
+            click: function(){
+                console.log('click');
+            },
+            mouseover:function(){
+                console.log('pass');
+            }
+        });
+        $("div").off(); //全部解綁
+        $("div").off("click"); //解除點擊事件
+        $("ul").on("click", "li", function(){
+            console.log('li');
+        })
+        $("ul").off("click", "li"); //解除事件委託
+        $("p").one("click", function(){ //只觸發一次
+            console.log('p');
+        })
+        $(document).on("click", function(){
+            console.log('document');
+        })
+        $("div").on("click", function(e){
+            console.log('div');
+            //event.stopPropagation() 加了這個阻止往上冒泡就不會印出document
+        })
+      })
+
+    </script>
+  
+</body>
+</html>
