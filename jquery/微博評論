@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       .box{
+        border: 1px solid black;
+        height: 300px;
+        width: 400px;
+       }
+       .txt{
+        position: relative;
+        top: 10px;
+       }
+       ul{
+        width: 250px;
+        padding-left: 80px;
+       }
+       ul li{
+        line-height: 25px;
+        border-bottom: 1px dashed #cccccc;
+        display: none;
+       }
+       ul li a{
+        float: right;
+       }
+       input{
+        float: right;
+       }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <div class="box" id="weibo">
+        <span>微博發布</span>
+        <textarea name="" class="txt" cols="30" rows="10"></textarea>
+        <button class="btn">發布</button>
+        <ul></ul>
+    </div>
+    <script>
+      $(function(){
+        $(".btn").click(function(){
+            var li = $("<li></li>");
+            //console.log($(".txt").val());
+            li.html($(".txt").val() + "<a href='javascript:;'>刪除</a>"); //這裡直接用li就好 不用$("li")
+            $("ul").prepend(li);
+            li.slideDown();
+            $(".txt").val("");
+        })
+        /*不能這樣寫 因為不能對還沒生成的元素添加點擊事件
+        $("ul a").click(function(){
+            console.log($(this).parent());
+            $(this).parent().remove();
+        })
+        */
+        $("ul").on("click", "a", function(){
+            $(this).parent().slideUp(function(){ //上滑後刪除
+                $(this).remove(); //這裡的this變成li了
+            });
+        })
+      })
+
+    </script>
+  
+</body>
+</html>
