@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        .current{
+            background-color: aqua;
+        }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+<body>
+    <div></div>
+    <ul>
+        <li>good</li>
+        <li>good</li>
+        <li>good</li>
+        <li>good</li>
+        <li>good</li>
+    </ul>
+    <ol>
+
+    </ol>
+    <script>
+      $(function(){
+        /*
+            $("div").click(function(){
+                $(this).css("background", "skyblue");
+            });
+            $("div").mouseenter(function(){
+                $(this).css("background", "black");
+            });
+        
+            $("div").on({ 
+                mouseenter: function(){  
+                    $(this).css("background", "black");
+                },
+                click: function(){
+                    $(this).css("background", "skyblue");
+                },
+            })
+        */
+        //若事件相同可寫成.on("mouseenter click", function(){})
+        $("div").on("mouseenter click", function(){
+            //console.log('hi');
+            $(this).toggleClass("current");
+        })
+        $("ul").on("click", "li", function(){ //事件綁定在ul身上 只有一個ul添加點擊事件 但觸發對象是li
+            console.log('hi');
+        })
+        $("ol").on("click", "li", function(){ //如果這裡沒用on不會印出東西
+            console.log('here');
+        })
+        var li = $("<li>after</li>");
+        $("ol").append(li);
+      })
+
+    </script>
+  
+</body>
+</html>
