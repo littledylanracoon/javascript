@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: burlywood;
+        }
+
+        .title {
+            height: 50px;
+            background-color: black;
+            color: white;
+        }
+
+        .title label {
+            margin: 20px;
+            margin-left: 40px;
+        }
+
+        .title input {
+            margin: 10px;
+            margin-left: 100px;
+        }
+
+        #donelist,
+        #todolist {
+            width: 100%;
+            background-color: white;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .todo ul {
+            position: relative;
+            float: left;
+            list-style: none;
+        }
+
+        .todo li {
+            display: flex;
+        }
+
+        .todo li a {
+            position: relative;
+            left: 100px;
+            top: 15px;
+        }
+    </style>
+    <script src="jquerymini.js"></script>
+</head>
+
+<body>
+    <header>
+        <section class="title">
+            <label for="title">Todolist</label>
+            <input type="text" name="title" id="title" placeholder="添加todo" required>
+        </section>
+    </header>
+    <section class="todo">
+        <h2>ing <span id="todocount"></span></h2>
+        <ol id="todolist" class="demo-box">
+           
+        </ol>
+        <h2>done <span id="donecount"></span></h2>
+        <ul id="donelist">
+            <li>
+                <input type="checkbox" name="" id="">
+                <p>123</p>
+                <a href="#">hi</a>
+            </li>
+        </ul>
+    </section>
+    <script>
+        $(function () {
+            //localStorage.clear();
+            load();
+            $("#title").on("keydown", function (e) {
+                if (e.keyCode === 13) { //enter鍵
+                    if($(this).val() !== ""){
+                        //console.log($(this).val());
+                        var local = getData(); //調用函式讀取本地原本的數據 local是數組
+                        local.push({title: $(this).val(), done: false}); //把最新數據追加給local然後存回去
+                        saveData(local);
+                        load();
+                        $(this).val("");
+                    }
+                }
+            })
+            $("ol, ul").on("click", "a", function(){ //刪除本地數據
+                //console.log('hi');
+                var local = getData();
+                var index = $(this).attr("id");
+                local.splice(index, 1);  //刪除index開始的一個數據
+                saveData(local);
+                load();
+            })
+            $("ol, ul").on("click", "input", function(){
+                var local = getData();
+                var index = $(this).siblings("a").attr("id");
+                console.log(index);
+                local[index].done = $(this).prop("checked");
+                saveData(local);
+                load();
+            })
+            //讀取本地存儲的數據
+            function getData(){
+                var data = localStorage.getItem("todolist");
+                if(data !== null){
+                    return JSON.parse(data); //把字符串數據轉成對象格式
+                }
+                else{
+                    return [];
+                }
+            }
+            function saveData(data){
+                localStorage.setItem("todolist", JSON.stringify(data));
+            }
+            function load(){
+                var data = getData();
+                $("ol, ul").empty();
+                var lis = 0;
+                var finish = 0;
+                $.each(data, function(i, n){
+                    if(n.done){
+                        var li = $("<li><input type='checkbox' checked='checked'><p>" + n.title + "</p><a href='javascript:;' id=" + i + ">hi</a></li>");
+                        $("ul").prepend(li);
+                        finish++;
+                    }
+                    else{
+                        var li = $("<li><input type='checkbox'><p>" + n.title + "</p><a href='javascript:;' id=" + i + ">hi</a></li>");
+                        $("ol").prepend(li);
+                        lis++;
+                    }
+                })
+                $("#todocount").text(lis);
+                $("#donecount").text(finish);
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
